@@ -1,0 +1,131 @@
+{
+  "variant_path": "3η Άσκηση/Κώδικες Ασκήσεων/3.2/mandel-fork1.c",
+  "baseline_name": "mandel.c",
+  "baseline_sha256": "a997b97e235d800113e3c30e7929383b6db3a8c4357c4d0e13b84de0adb2ab8e",
+  "variant_sha256": "5930e17a17c3b3dc71e86de7eaa50ed3b5b7216a1d91417a8abd9d357bddffa3",
+  "edits": [
+    [
+      0,
+      205
+    ],
+    "\n#include <semaphore.h>\n#include <sys/mman.h>\n#include <sys/wait.h>\n\n/*TODO header file for m(un)map*/\n",
+    [
+      205,
+      779
+    ],
+    "\nsem_t *sem;\n\nint safe_atoi(char *s, int *val)\n{\n        long l;\n        char *endp;\n\n        l = strtol(s, &endp, 10);\n        if (s != endp && *endp == '\\0') {\n                *val = l;\n                return 0;\n        } else\n                return -1;\n}\n\nvoid usage(char *argv0)\n{\n        fprintf(stderr, \"Usage: %s procedure_count\\n\"\n                \"Exactly one argument required:\\n\"\n                \"    procedure_count: The number of procedures to create.\\n\",\n                argv0);\n        exit(1);\n}\n",
+    [
+      779,
+      2072
+    ],
+    "init_",
+    [
+      2072,
+      2076
+    ],
+    ", int procs",
+    [
+      2076,
+      2189
+    ],
+    "\tfor(int line = init_line; line < y_chars; line += procs) {\n\t",
+    [
+      2189,
+      2229
+    ],
+    "\tif(sem_wait(&sem[line % procs]) < 0) {perror(\"sem_wait\"); exit(1);}\n\t        ",
+    [
+      2229,
+      2264
+    ],
+    "\t\tif(sem_post(&sem[(line+1) % procs]) < 0) {perror(\"sem_post\"); exit(1);}\n\t}\n",
+    [
+      2264,
+      2267
+    ],
+    "/*\n * Create a shared memory area, usable by all descendants of the calling\n * process.\n */\nvoid *create_shared_memory_area(unsigned ",
+    [
+      2267,
+      2271
+    ],
+    "nu",
+    [
+      2271,
+      2272
+    ],
+    "bytes",
+    [
+      2280,
+      2289
+    ],
+    "pages;\n\tvoid *addr;\n\n\tif (numbytes == 0) {\n\t\tfprintf(stderr, \"%s: internal error: called for numbytes == 0\\n\", __func__);\n\t\texit(1);\n\t}\n\n\t/*\n\t * Determine the number of pages needed, round up the requested number of\n\t * pages\n\t */\n\tpages = (numbytes - 1) / sysconf(_SC_PAGE_SIZE) + 1;\n\n\t/* Create a shared, anonymous mapping for this number of pages */\n\t/* TODO:*/  \n\taddr = mmap(NULL, pages * sysconf(_SC_PAGE_SIZE), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);\n\tif(addr == MAP_FAILED) {perror(\"mmap\"); exit(1);}\n\n\treturn addr;\n}\n\nvoid destroy_shared_memory_area(void *addr, unsigned int numbytes) {\n\tint pages;\n\n\tif (numbytes == 0) {\n\t\tfprintf(stderr, \"%s: internal error: called for numbytes == 0\\n\", __func__);\n\t\texit(1);\n\t}\n\n\t/*\n\t * Determine the number of pages needed, round up the requested number of\n\t * pages\n\t */\n\tpages = (numbytes - 1) / sysconf(_SC_PAGE_SIZE) + 1;\n\n\tif (munmap(addr, pages * sysconf(_SC_PAGE_SIZE)) == -1) {\n\t\tperror(\"destroy_shared_memory_area: munmap failed\");\n\t\texit(1);\n\t}\n}\n\nint main(int argc, char *argv[])\n{\n\tpid_t p;\n\tint procs;\n\n\t/*\n         * Parse the command ",
+    [
+      2289,
+      2293
+    ],
+    "\n         */\n        if (argc != 2)\n                usage(argv[0])",
+    [
+      2293,
+      2295
+    ],
+    "        if (safe_atoi(argv[1], &procs) < 0 || procs <= 0) {\n                fprintf(stderr, \"`%s' is not valid for `procedures_count'\\n\", argv[1]);\n                exit(1);\n        }\n",
+    [
+      2295,
+      2364
+    ],
+    "\n\tsem = create_shared_memory_area(procs * sizeof(sem_t));\n\tif(sem_init(&sem[0], 1, 1) < 0) {perror(\"sem_init\"); exit(1);}\n\tfor(int i = 1; i < procs; i++)\n\t\tif(sem_init(&sem[i], 1, 0) < 0) {perror(\"sem_init\"); exit(1);}\n\n",
+    [
+      2364,
+      2495
+    ],
+    "int init_",
+    [
+      2495,
+      2505
+    ],
+    "init_",
+    [
+      2505,
+      2512
+    ],
+    "pro",
+    [
+      2514,
+      2515
+    ],
+    [
+      2518,
+      2521
+    ],
+    "init_",
+    [
+      2521,
+      2532
+    ],
+    "\tp = fork();\n\t\tif(p < 0) {perror(\"fork\"); exit(1);}\n\t\tif(p == 0) {\n                ",
+    [
+      2532,
+      2567
+    ],
+    "init_",
+    [
+      2567,
+      2571
+    ],
+    ", procs",
+    [
+      2571,
+      2574
+    ],
+    "                \texit(0);\n               \t}\n",
+    [
+      2574,
+      2577
+    ],
+    "\n\t//Finish program\n\tfor(int i=0; i<procs; i++)\n\t\twait(NULL);\n\tdestroy_shared_memory_area(sem, procs*sizeof(sem_t));\n",
+    [
+      2577,
+      2614
+    ]
+  ]
+}

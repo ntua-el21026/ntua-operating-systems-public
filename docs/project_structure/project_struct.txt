@@ -1,0 +1,253 @@
+NTUA-Operating_Systems/
+├── 1η Άσκηση/
+│   ├── Εικόνες Αναφοράς/
+│   │   ├── a1.1 - 1.png
+│   │   ├── a1.1 - 2.png
+│   │   ├── a1.1 - 3.png
+│   │   ├── a1.1 - 4.png
+│   │   ├── a1.1 - 5.png
+│   │   ├── a1.1 - 6.png
+│   │   ├── a1.2 - 1.png
+│   │   ├── a1.2 - 10.png
+│   │   ├── a1.2 - 2.png
+│   │   ├── a1.2 - 3.png
+│   │   ├── a1.2 - 4.png
+│   │   ├── a1.2 - 5.png
+│   │   ├── a1.2 - 6.png
+│   │   ├── a1.2 - 7.png
+│   │   ├── a1.2 - 8.png
+│   │   ├── a1.2 - 9.png
+│   │   ├── a1.3 - 1.png
+│   │   ├── a1.3 - 2.png
+│   │   ├── a1.3 - 3.png
+│   │   ├── a1.3 - 4.png
+│   │   ├── a1.3 - 5.png
+│   │   ├── a1.3 - 6.png
+│   │   ├── a1.3 - 7.png
+│   │   └── a1.3 - 8.png
+│   ├── Κώδικες Ασκήσεων/
+│   │   ├── a1.1-system_calls
+│   │   ├── a1.1-system_calls.c
+│   │   ├── a1.1-system_calls.o
+│   │   ├── a1.2-fork
+│   │   ├── a1.2-fork.c
+│   │   ├── a1.2-fork.o
+│   │   ├── a1.2-fork3
+│   │   ├── a1.2-fork3.c
+│   │   ├── a1.2-fork3.o
+│   │   ├── a1.2-fork4
+│   │   ├── a1.2-fork4.c
+│   │   ├── a1.2-fork4.o
+│   │   ├── a1.3-comm
+│   │   ├── a1.3-comm.c
+│   │   ├── a1.3-comm.o
+│   │   ├── Makefile
+│   │   ├── read.txt
+│   │   └── write.txt
+│   ├── Παραδοτέο - 1η Άσκηση - oslab005/
+│   │   ├── a1.1-system_calls.c
+│   │   ├── a1.2-fork.c
+│   │   ├── a1.2-fork3.c
+│   │   ├── a1.2-fork4.c
+│   │   ├── a1.3-comm.c
+│   │   ├── Makefile
+│   │   └── Αναφορά 1ης Άσκησης - oslab005.pdf
+│   ├── os-lab-01-intro.ppsx
+│   ├── os-lab-exer1.pdf.pdf
+│   ├── Αναφορά 1ης Άσκησης - oslab005.docx
+│   ├── Αναφορά 1ης Άσκησης - oslab005.pdf
+│   └── Παραδοτέο - 1η Άσκηση - oslab005.zip
+├── 2η Άσκηση/
+│   ├── Εικόνες και PDFs/
+│   │   ├── 1_changed.png
+│   │   ├── 2.3.png
+│   │   ├── add_atomic.png
+│   │   ├── bad_implement.png
+│   │   ├── bad_implement_code.png
+│   │   ├── color_change.png
+│   │   ├── cpu_cores.png
+│   │   ├── defined.png
+│   │   ├── Makefile.png
+│   │   ├── mandel_cond.c.pdf
+│   │   ├── mandel_cond_changed_problem.png
+│   │   ├── mandel_cond_problem.png
+│   │   ├── mandel_sema.c.pdf
+│   │   ├── pthread_lu.png
+│   │   ├── result_0.png
+│   │   ├── sig_handler_1.png
+│   │   ├── sig_handler_2.png
+│   │   ├── simplesync.c.pdf
+│   │   ├── simplesync_bad.png
+│   │   ├── struct.png
+│   │   ├── sub_atomic.png
+│   │   ├── time_mandel.png
+│   │   ├── time_mandel_sema.png
+│   │   └── time_simplesync.png
+│   ├── Κώδικες Ασκήσεων/
+│   │   ├── kgarten
+│   │   ├── kgarten.c
+│   │   ├── kgarten.o
+│   │   ├── Makefile
+│   │   ├── mandel
+│   │   ├── mandel-lib.c
+│   │   ├── mandel-lib.h
+│   │   ├── mandel-lib.o
+│   │   ├── mandel.c
+│   │   ├── mandel.o
+│   │   ├── mandel_cond
+│   │   ├── mandel_cond.c
+│   │   ├── mandel_cond.o
+│   │   ├── mandel_sema
+│   │   ├── mandel_sema.c
+│   │   ├── mandel_sema.o
+│   │   ├── pthread-test
+│   │   ├── pthread-test.c
+│   │   ├── pthread-test.o
+│   │   ├── rand-fork.c
+│   │   ├── simplesync-atomic
+│   │   ├── simplesync-atomic.o
+│   │   ├── simplesync-mutex
+│   │   ├── simplesync-mutex.o
+│   │   └── simplesync.c
+│   ├── Παραδοτέο - 2η Άσκηση - oslab005/
+│   │   ├── kgarten.c
+│   │   ├── Makefile
+│   │   ├── mandel-lib.c
+│   │   ├── mandel-lib.h
+│   │   ├── mandel.c
+│   │   ├── mandel_cond.c
+│   │   ├── mandel_sema.c
+│   │   ├── pthread-test.c
+│   │   ├── rand-fork.c
+│   │   ├── simplesync.c
+│   │   └── Αναφορά 2ης Άσκησης - oslab005.pdf
+│   ├── os-lab-exer2.pdf
+│   ├── os-lab02-intro.pdf
+│   ├── Αναφορά 2ης Άσκησης - oslab005 - fromword.pdf
+│   ├── Αναφορά 2ης Άσκησης - oslab005.docx
+│   ├── Αναφορά 2ης Άσκησης - oslab005.pdf
+│   └── Παραδοτέο - 2η Άσκηση - oslab005.zip
+├── 3η Άσκηση/
+│   ├── Εικόνες και PDFs/
+│   │   ├── 1.1.2.png
+│   │   ├── 1.1.png
+│   │   ├── 1.10.2.png
+│   │   ├── 1.11.21.png
+│   │   ├── 1.11.22.png
+│   │   ├── 1.2.2.png
+│   │   ├── 1.2.png
+│   │   ├── 1.3.2.png
+│   │   ├── 1.3.png
+│   │   ├── 1.4.2.png
+│   │   ├── 1.4.png
+│   │   ├── 1.5.2.png
+│   │   ├── 1.5.png
+│   │   ├── 1.6.2.png
+│   │   ├── 1.6.png
+│   │   ├── 1.7.21.png
+│   │   ├── 1.7.22.png
+│   │   ├── 1.8.2.png
+│   │   ├── 1.9.2.png
+│   │   ├── child 1.10.png
+│   │   ├── child 1.11.png
+│   │   ├── child 1.12.png
+│   │   ├── child 1.7.png
+│   │   ├── child 1.8.png
+│   │   ├── child 1.9.png
+│   │   ├── fork 1 - 2.png
+│   │   ├── fork 1 - 6.png
+│   │   ├── mandel-fork1.c.pdf
+│   │   ├── mandel-fork2.c.pdf
+│   │   ├── mmap.c.pdf
+│   │   ├── parent 1.10.png
+│   │   ├── parent 1.11.png
+│   │   ├── parent 1.12.png
+│   │   ├── parent 1.7.png
+│   │   ├── parent 1.8.png
+│   │   └── parent 1.9.png
+│   ├── Κώδικες Ασκήσεων/
+│   │   ├── 3.1/
+│   │   │   ├── file.txt
+│   │   │   ├── help.c
+│   │   │   ├── help.h
+│   │   │   ├── help.o
+│   │   │   ├── Makefile
+│   │   │   ├── mmap
+│   │   │   ├── mmap.c
+│   │   │   └── mmap.o
+│   │   └── 3.2/
+│   │       ├── Makefile
+│   │       ├── mandel-fork1
+│   │       ├── mandel-fork1.c
+│   │       ├── mandel-fork1.o
+│   │       ├── mandel-fork2
+│   │       ├── mandel-fork2.c
+│   │       ├── mandel-fork2.o
+│   │       ├── mandel-lib.c
+│   │       ├── mandel-lib.h
+│   │       └── mandel-lib.o
+│   ├── Παραδοτέο - 3η Άσκηση - oslab005/
+│   │   ├── 3.1/
+│   │   │   ├── file.txt
+│   │   │   ├── help.c
+│   │   │   ├── help.h
+│   │   │   ├── Makefile
+│   │   │   └── mmap.c
+│   │   ├── 3.2/
+│   │   │   ├── Makefile
+│   │   │   ├── mandel-fork1.c
+│   │   │   ├── mandel-fork2.c
+│   │   │   ├── mandel-lib.c
+│   │   │   └── mandel-lib.h
+│   │   └── Αναφορά 3ης Άσκησης - oslab005.pdf
+│   ├── os-lab-exer3-vm.pdf
+│   ├── os-lab03-mmap.pptm
+│   ├── Αναφορά 3ης Άσκησης - oslab005 - fromword.pdf
+│   ├── Αναφορά 3ης Άσκησης - oslab005.docx
+│   ├── Αναφορά 3ης Άσκησης - oslab005.pdf
+│   └── Παραδοτέο - 3η Άσκηση - oslab005.zip
+├── docs/
+│   ├── project_structure/
+│   │   ├── project_struct.py
+│   │   └── project_struct.txt
+│   └── Διαλέξεις/
+│       ├── os-01-introduction.pdf
+│       ├── os-02a-processes.pdf
+│       ├── os-02b-processes.ppsx
+│       ├── os-02c-processes.ppsx
+│       ├── os-02d-processes.pdf
+│       ├── os-03-scheduling.pdf
+│       ├── os-04-synchronization.pdf
+│       ├── os-05-MM.ppsx
+│       ├── os-06-VM1.pdf
+│       ├── os-06-VM2.ppsx
+│       └── os-07-filesystems.pdf
+├── Προπαρασκευαστική Άσκηση/
+│   ├── Screenshots/
+│   │   ├── 2024-03-06 (1).png
+│   │   ├── 2024-03-06 (10).png
+│   │   ├── 2024-03-06 (11).png
+│   │   ├── 2024-03-06 (12).png
+│   │   ├── 2024-03-06 (13).png
+│   │   ├── 2024-03-06 (14).png
+│   │   ├── 2024-03-06 (15).png
+│   │   ├── 2024-03-06 (16).png
+│   │   ├── 2024-03-06 (17).png
+│   │   ├── 2024-03-06 (18).png
+│   │   ├── 2024-03-06 (2).png
+│   │   ├── 2024-03-06 (3).png
+│   │   ├── 2024-03-06 (4).png
+│   │   ├── 2024-03-06 (5).png
+│   │   ├── 2024-03-06 (6).png
+│   │   ├── 2024-03-06 (7).png
+│   │   ├── 2024-03-06 (8).png
+│   │   ├── 2024-03-06 (9).png
+│   │   └── 2024-03-06.png
+│   ├── os-lab-00-intro.pdf
+│   ├── os-lab-exer0.pdf
+│   └── Αναφορά Προπαρασκευαστικής Άσκησης - oslab005.docx
+├── LICENSE
+├── oslab005 - report template.docx
+└── README.md
+
+Total directories: 22, Total files: 229

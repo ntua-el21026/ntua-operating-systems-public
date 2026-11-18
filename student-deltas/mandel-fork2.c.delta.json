@@ -1,0 +1,343 @@
+{
+  "variant_path": "3η Άσκηση/Κώδικες Ασκήσεων/3.2/mandel-fork2.c",
+  "baseline_name": "mandel.c",
+  "baseline_sha256": "a997b97e235d800113e3c30e7929383b6db3a8c4357c4d0e13b84de0adb2ab8e",
+  "variant_sha256": "444ff1e1b31bf8d9513e1242950682a901b09e7a51114555e1ac46c8b51a6f76",
+  "edits": [
+    [
+      0,
+      205
+    ],
+    "\n#include <sys/mman.h>\n#include <sys/wait.h>\n\n/*TODO header file for m(un)map*/\n",
+    [
+      205,
+      780
+    ],
+    "int **color_val;\n\nint safe_atoi(char *s, int *val)\n{\n        long l;\n        char *endp;\n\n        l = strtol(s, &endp, 10);\n        if (s != endp && *endp == '\\0') {\n                *val = l;\n                return 0;\n        } else\n                return -1;\n}\n\nvoid usage(char *argv0)\n{\n        fprintf(stderr, \"Usage: %s procedure_count\\n\"\n                \"Exactly one argument required:\\n\"\n                \"    procedure_count: The number of procedures to create.\\n\",\n                argv0);\n        exit(1);\n}\n\n",
+    [
+      780,
+      902
+    ],
+    [
+      919,
+      1412
+    ],
+    "[line]",
+    [
+      1412,
+      1551
+    ],
+    [
+      1553,
+      1554
+    ],
+    "ine",
+    [
+      1562,
+      1735
+    ],
+    "[line]",
+    [
+      1735,
+      2024
+    ],
+    "/*\n * Create a shared memory area, usable by all descendants of the calling\n * process.\n */\n",
+    [
+      2024,
+      2029
+    ],
+    "*",
+    [
+      2029,
+      2030
+    ],
+    "rea",
+    [
+      2034,
+      2037
+    ],
+    "sh",
+    [
+      2037,
+      2038
+    ],
+    "re",
+    [
+      2039,
+      2041
+    ],
+    "mem",
+    [
+      2041,
+      2042
+    ],
+    "ry_area(",
+    [
+      2042,
+      2043
+    ],
+    [
+      2050,
+      2051
+    ],
+    "s",
+    [
+      2056,
+      2057
+    ],
+    "g",
+    [
+      2057,
+      2059
+    ],
+    [
+      2065,
+      2066
+    ],
+    [
+      2067,
+      2072
+    ],
+    [
+      2074,
+      2075
+    ],
+    "umbyt",
+    [
+      2075,
+      2076
+    ],
+    "s",
+    [
+      2076,
+      2080
+    ],
+    "\tint pages;\n\tvoid *addr;\n\n\tif (numbytes == 0) {\n\t\tfprintf(stderr, \"%s: internal error: called for numbytes == 0\\n\", __func__);\n\t\texit(1);\n\t}\n\n",
+    [
+      2080,
+      2088
+    ],
+    "De",
+    [
+      2090,
+      2092
+    ],
+    "r",
+    [
+      2092,
+      2093
+    ],
+    "in",
+    [
+      2109,
+      2110
+    ],
+    [
+      2136,
+      2141
+    ],
+    "number of pages ",
+    [
+      2143,
+      2145
+    ],
+    "eded,",
+    [
+      2145,
+      2146
+    ],
+    "round up the requested num",
+    [
+      2146,
+      2148
+    ],
+    "r of\n\t * pa",
+    [
+      2150,
+      2151
+    ],
+    "es",
+    [
+      2157,
+      2164
+    ],
+    "pages = (",
+    [
+      2165,
+      2166
+    ],
+    "umby",
+    [
+      2166,
+      2167
+    ],
+    "es",
+    [
+      2167,
+      2168
+    ],
+    "- 1) / sys",
+    [
+      2168,
+      2170
+    ],
+    "nf(",
+    [
+      2173,
+      2174
+    ],
+    "SC",
+    [
+      2179,
+      2180
+    ],
+    "PAGE_SIZE) + 1",
+    [
+      2186,
+      2190
+    ],
+    "/* Create a shared, anonymous mapping for this number of pages */\n\t/* TODO:*/  \n\taddr = mmap(NULL, pages * sys",
+    [
+      2190,
+      2192
+    ],
+    "nf(",
+    [
+      2197,
+      2198
+    ],
+    "SC",
+    [
+      2204,
+      2205
+    ],
+    "PAGE_SIZE)",
+    [
+      2214,
+      2216
+    ],
+    "PROT",
+    [
+      2221,
+      2222
+    ],
+    "READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0",
+    [
+      2225,
+      2229
+    ],
+    "if(addr == MAP_FAILED) {perr",
+    [
+      2229,
+      2230
+    ],
+    "r(\"m",
+    [
+      2236,
+      2238
+    ],
+    "p\"",
+    [
+      2261,
+      2263
+    ],
+    " exit(1);}",
+    [
+      2263,
+      2264
+    ],
+    "\n\treturn addr;\n",
+    [
+      2264,
+      2267
+    ],
+    "void destroy_shared_memory_area(void *addr, unsigned int numbytes) {\n\tint pages;\n\n\tif (numbytes == 0) {\n\t\tfprintf(stderr, \"%s: internal error: called for numbytes == 0\\n\", __func__);\n\t\texit(1);\n\t}\n\n\t/*\n\t * Determine the number of pages needed, round up the requested number of\n\t * pages\n\t */\n\tpages = (numbytes - 1) / sysconf(_SC_PAGE_SIZE) + 1;\n\n\tif (munmap(addr, pages * sysconf(_SC_PAGE_SIZE)) == -1) {\n\t\tperror(\"destroy_shared_memory_area: munmap failed\");\n\t\texit(1);\n\t}\n}\n\n",
+    [
+      2267,
+      2276
+    ],
+    "int argc, char *arg",
+    [
+      2276,
+      2277
+    ],
+    "[]",
+    [
+      2280,
+      2284
+    ],
+    "\tpid_t p;\n",
+    [
+      2284,
+      2289
+    ],
+    "procs;\n\n\t/*\n         * Parse the command ",
+    [
+      2289,
+      2293
+    ],
+    "\n         */\n        if (argc != 2)\n                usage(argv[0])",
+    [
+      2293,
+      2295
+    ],
+    "        if (safe_atoi(argv[1], &procs) < 0 || procs <= 0) {\n                fprintf(stderr, \"`%s' is not valid for `procedures_count'\\n\", argv[1]);\n                exit(1);\n        }\n",
+    [
+      2295,
+      2364
+    ],
+    "\n\t// Initialize 2-D array\n\tcolor_val = create_shared_memory_area(x_chars * sizeof(int));\n\n\tfor(int i = 0; i < x_chars; i++)\n\t\tcolor_val[i] = create_shared_memory_area(y_chars * sizeof(int));\n\t\n",
+    [
+      2364,
+      2495
+    ],
+    "int init_",
+    [
+      2495,
+      2503
+    ],
+    "; init_line < procs; init_line++) {\n\t\tp = fork();\n\t\tif(p < 0) {perror(\"fork\"); exit(1);}\n\t\tif(p == 0) {\n\t\t\tfor(int line = init_line",
+    [
+      2503,
+      2525
+    ],
+    " ",
+    [
+      2525,
+      2526
+    ],
+    "= procs",
+    [
+      2527,
+      2528
+    ],
+    "\n",
+    [
+      2528,
+      2529
+    ],
+    "               ",
+    [
+      2531,
+      2540
+    ],
+    [
+      2551,
+      2564
+    ],
+    [
+      2567,
+      2574
+    ],
+    "               \t\texit(0);\n\t\t}\n",
+    [
+      2574,
+      2577
+    ],
+    "\n\t// Parent waits\n\tfor(int i=0; i<procs; i++)\n\t\twait(NULL);\n\n\t// Print output\n\tfor(int line = 0; line < y_chars; line++)\n\t\toutput_mandel_line(1, line);\n\n\t// Destroy memory\n\tfor(int i = 0; i < y_chars; i++)\n\t\tdestroy_shared_memory_area(color_val, y_chars * sizeof(int));\n\tdestroy_shared_memory_area(color_val, x_chars * sizeof(int));\n",
+    [
+      2577,
+      2614
+    ]
+  ]
+}

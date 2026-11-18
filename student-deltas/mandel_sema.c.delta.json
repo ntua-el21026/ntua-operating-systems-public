@@ -1,0 +1,262 @@
+{
+  "variant_path": "2η Άσκηση/Κώδικες Ασκήσεων/mandel_sema.c",
+  "baseline_name": "mandel.c",
+  "baseline_sha256": "a997b97e235d800113e3c30e7929383b6db3a8c4357c4d0e13b84de0adb2ab8e",
+  "variant_sha256": "d5d8616c39e6bde86cff9647d837afb78a20bd7cc103b3ba7d890e8ec724548d",
+  "edits": [
+    [
+      0,
+      12
+    ],
+    "_sema",
+    [
+      12,
+      78
+    ],
+    ", with semaphores",
+    [
+      78,
+      88
+    ],
+    "#include <signal.h>\n#include <errno.h>\n#include <pthread.h>\n",
+    [
+      88,
+      205
+    ],
+    "#include <semaphore.h>\n",
+    [
+      205,
+      356
+    ],
+    "\n/* \n * POSIX thread functions do not return error numbers in errno,\n * but in the actual return value of the function call instead.\n * This macro helps with error reporting in this case.\n */\n#define perror_pthread(ret, msg) \\\n        do { errno = ret; perror(msg); } while (0)\n",
+    [
+      356,
+      779
+    ],
+    "\nvoid sig_handler(int signum)\n{\n\treset_xterm_color(1);\n\texit(1);\n}\n\n/*\n * A (distinct) instance of this structure\n * is passed to each thread\n */\nstruct thread_info_struct {\n        pthread_t tid; /* POSIX thread id, as returned by the library */\n\n        int *color_val; /* Pointer to array to manipulate */\n        int thrid; /* Application-defined thread id */\n        int thrcnt;\n};\n\nint safe_atoi(char *s, int *val)\n{\n        long l;\n        char *endp;\n\n        l = strtol(s, &endp, 10); \n        if (s != endp && *endp == '\\0') {\n                *val = l;\n                return 0;\n        } else\n                return -1;\n}\n\nvoid usage(char *argv0)\n{\n        fprintf(stderr, \"Usage: %s thread_count array_size\\n\\n\"\n                \"Exactly one argument required:\\n\"\n                \"    thread_count: The number of threads to create.\\n\",\n                argv0);\n        exit(1);\n}\n\nvoid *safe_malloc(size_t size)\n{\n        void *p;\n\n        if ((p = malloc(size)) == NULL) {\n                fprintf(stderr, \"Out of memory, failed to allocate %zd bytes\\n\",\n                        size);\n                exit(1);\n        }\n\n        return p;\n}\n",
+    [
+      779,
+      1563
+    ],
+    " ",
+    [
+      1564,
+      1566
+    ],
+    [
+      1576,
+      1621
+    ],
+    "int ",
+    [
+      1621,
+      2024
+    ],
+    "/* Start function for each thread */\nsem_t *sem;\n\n",
+    [
+      2024,
+      2029
+    ],
+    "*",
+    [
+      2029,
+      2060
+    ],
+    "vo",
+    [
+      2060,
+      2061
+    ],
+    "d",
+    [
+      2063,
+      2064
+    ],
+    "*arg",
+    [
+      2076,
+      2081
+    ],
+    "struct thread_info_struct",
+    [
+      2085,
+      2087
+    ],
+    "thr",
+    [
+      2087,
+      2088
+    ],
+    "=",
+    [
+      2099,
+      2102
+    ],
+    [
+      2150,
+      2151
+    ],
+    [
+      2186,
+      2189
+    ],
+    "\tfor (int i = thr->thrid; i < y_chars; i += thr->thrcnt) {\n",
+    [
+      2189,
+      2210
+    ],
+    [
+      2211,
+      2212
+    ],
+    [
+      2214,
+      2216
+    ],
+    "thr->",
+    [
+      2216,
+      2225
+    ],
+    ");\n\tsem_wait(&sem[i % thr->thrcnt]",
+    [
+      2225,
+      2248
+    ],
+    "1",
+    [
+      2250,
+      2252
+    ],
+    "thr->",
+    [
+      2252,
+      2264
+    ],
+    "\tsem_post(&sem[(i+1) % thr->thrcnt]);\n\t}\n\treturn NULL;\n",
+    [
+      2264,
+      2276
+    ],
+    "int argc, char *arg",
+    [
+      2276,
+      2277
+    ],
+    "[]",
+    [
+      2280,
+      2289
+    ],
+    "thrcnt, ret;\n\tstruct thread_info_struct *thr;\n\n\t// Signal Handler\n    struct sigaction sa;\n    sa.sa_flags = SA_RESTART;\n\tsa.sa_handler = sig_handler;\n    if (sigaction(SIGINT, &sa, NULL) < 0)\n    {\n        perror(\"sigaction\");\n        exit(1);\n    }\n\n\t/*\n    * Parse the command ",
+    [
+      2289,
+      2293
+    ],
+    "\n    */\n    if (argc != 2)\n        usage(argv[0])",
+    [
+      2293,
+      2295
+    ],
+    "    if (safe_atoi(argv[1], &thrcnt) < 0 || thrcnt <= 0) {\n        fprintf(stderr, \"`%s' is not valid for `thread_count'\\n\", argv[1]);\n        exit(1);\n    }\n",
+    [
+      2295,
+      2364
+    ],
+    "\t\n\tthr = safe_malloc(thrcnt * sizeof(*thr));\n\tsem = safe_malloc(thrcnt * sizeof(sem_t));\n",
+    [
+      2364,
+      2365
+    ],
+    [
+      2489,
+      2493
+    ],
+    [
+      2494,
+      2495
+    ],
+    [
+      2496,
+      2498
+    ],
+    "t i=0; i<thrcnt; i++)\n\t{\n\t\tthr[i].thrcnt",
+    [
+      2499,
+      2502
+    ],
+    "thrcnt",
+    [
+      2503,
+      2504
+    ],
+    "\n\t\tthr[i].thrid",
+    [
+      2504,
+      2505
+    ],
+    "= i;\n\t\tthr[i].co",
+    [
+      2505,
+      2506
+    ],
+    "or_val = saf",
+    [
+      2508,
+      2509
+    ],
+    "_malloc(x",
+    [
+      2513,
+      2519
+    ],
+    [
+      2520,
+      2521
+    ],
+    "* sizeof(",
+    [
+      2522,
+      2524
+    ],
+    "t",
+    [
+      2527,
+      2528
+    ],
+    ");",
+    [
+      2530,
+      2533
+    ],
+    "if(i == 0) sem_init(&sem[i], 0, 1);\n\t\telse sem_init(&sem[i], 0, 0);\n\n\t\t/* Spawn new thread */\n        ret = pthread_create(&thr[i].tid, NULL, ",
+    [
+      2533,
+      2563
+    ],
+    [
+      2565,
+      2567
+    ],
+    "&thr[",
+    [
+      2568,
+      2569
+    ],
+    "]",
+    [
+      2571,
+      2574
+    ],
+    "        if (ret) {\n                perror_pthread(ret, \"pthread_create\");\n                exit(1);\n        }\n",
+    [
+      2574,
+      2577
+    ],
+    "\n\t\t/*\n         * Wait for all threads to terminate\n         */\n        for (int i=0; i<thrcnt; i++) {\n            ret = pthread_join(thr[i].tid, NULL);\n            if (ret) {\n                    perror_pthread(ret, \"pthread_join\");\n                    exit(1);\n            }\n        }\n\n\tfor(int i=0; i<thrcnt; i++)\n\t\tsem_destroy(&sem[i]);\n",
+    [
+      2577,
+      2614
+    ]
+  ]
+}
