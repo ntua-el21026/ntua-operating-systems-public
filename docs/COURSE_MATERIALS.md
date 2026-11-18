@@ -1,6 +1,6 @@
 # NTUA Operating Systems Laboratory materials
 
-The teaching PDFs and slide files below were course materials. Use the [CSLab laboratory page](https://www.cslab.ntua.gr/courses/os/) and the [NTUA course catalogue](https://www.ece.ntua.gr/en/education/undergraduate/courses?courseId=3237) to identify the original edition.
+The teaching PDFs and slide files below were course materials. Use the [CSLab laboratory page](https://www.cslab.ece.ntua.gr/courses/os/) and the [NTUA course catalogue](https://www.ece.ntua.gr/en/education/undergraduate/courses?courseId=3237) to identify the original edition.
 
 - `1η Άσκηση/os-lab-01-intro.ppsx`
 - `1η Άσκηση/os-lab-exer1.pdf.pdf`
